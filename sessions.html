@@ -39,37 +39,18 @@
   </svg>
 </div>
 
-<!-- UPCOMING SESSIONS -->
+<!-- UPCOMING / PAST SESSIONS -->
 <section class="band">
   <div class="container">
     <h2>Canberra — 2026</h2>
     <p>Sessions are held on the third Wednesday of the month unless otherwise noted. Sessions run 5:30–6:30pm at Monster Bar at Ovolo Nishi. We meet at the long green table by the Edinburgh Avenue entrance. All sessions are free to attend and we encourage you to buy yourself a beverage.</p>
 
-    <div class="session-list">
+    <div class="session-tabs" role="tablist">
+      <button class="session-tab active" role="tab" aria-selected="true" aria-controls="upcoming-panel" id="upcoming-tab" onclick="switchSessionTab('upcoming')">Upcoming</button>
+      <button class="session-tab" role="tab" aria-selected="false" aria-controls="past-panel" id="past-tab" onclick="switchSessionTab('past')">Past</button>
+    </div>
 
-      <div class="session-card">
-        <div class="session-date">
-          <div class="day">17</div>
-          <div class="month">Jun</div>
-        </div>
-        <div class="session-info">
-          <h3>Theme: Navigating romantic relationships</h3>
-          <p>5:30pm · Monster Ovolo Nishi · Free</p>
-        </div>
-        <a href="join.html" class="btn btn-primary">I'm coming</a>
-      </div>
-      
-      <div class="session-card">
-        <div class="session-date">
-          <div class="day">15</div>
-          <div class="month">Jul</div>
-        </div>
-        <div class="session-info">
-          <h3>Theme: How to talk about your parent now</h3>
-          <p>5:30pm · Monster Ovolo Nishi · Free</p>
-        </div>
-        <a href="join.html" class="btn btn-primary">I'm coming</a>
-      </div>
+    <div class="session-list" id="upcoming-panel" role="tabpanel" aria-labelledby="upcoming-tab">
 
       <div class="session-card">
         <div class="session-date">
@@ -77,10 +58,10 @@
           <div class="month">Aug</div>
         </div>
         <div class="session-info">
-          <h3>Theme: Sharing resources that have helped us in our grief</h3>
+          <h3>Sharing resources that have helped us in our grief</h3>
           <p>5:30pm · Monster Ovolo Nishi · Free</p>
         </div>
-        <a href="join.html" class="btn btn-outline">I'm coming</a>
+        <a href="join.html" class="btn btn-primary">I'm coming</a>
       </div>
 
       <div class="session-card">
@@ -89,10 +70,10 @@
           <div class="month">Sep</div>
         </div>
         <div class="session-info">
-          <h3>Theme: Remembering and forgetting</h3>
+          <h3>Making peace with the unknowable</h3>
           <p>5:30pm · Monster Ovolo Nishi · Free</p>
         </div>
-        <a href="join.html" class="btn btn-outline">I'm coming</a>
+        <a href="join.html" class="btn btn-primary">I'm coming</a>
       </div>
 
       <div class="session-card">
@@ -101,10 +82,10 @@
           <div class="month">Oct</div>
         </div>
         <div class="session-info">
-          <h3>Theme: Who am I now?</h3>
+          <h3>Remembering and forgetting</h3>
           <p>5:30pm · Monster Ovolo Nishi · Free</p>
         </div>
-        <a href="join.html" class="btn btn-outline">I'm coming</a>
+        <a href="join.html" class="btn btn-primary">I'm coming</a>
       </div>
 
       <div class="session-card">
@@ -113,10 +94,10 @@
           <div class="month">Nov</div>
         </div>
         <div class="session-info">
-          <h3>Grief and the body</h3>
+          <h3>Meaning making</h3>
           <p>5:30pm · Monster Ovolo Nishi · Free</p>
         </div>
-        <a href="join.html" class="btn btn-outline">I'm coming</a>
+        <a href="join.html" class="btn btn-primary">I'm coming</a>
       </div>
 
       <div class="session-card">
@@ -128,7 +109,33 @@
           <h3>Managing significant days</h3>
           <p>5:30pm · Monster Ovolo Nishi · Free</p>
         </div>
-        <a href="join.html" class="btn btn-outline">I'm coming</a>
+        <a href="join.html" class="btn btn-primary">I'm coming</a>
+      </div>
+
+    </div>
+
+    <div class="session-list" id="past-panel" role="tabpanel" aria-labelledby="past-tab" hidden>
+
+      <div class="session-card">
+        <div class="session-date">
+          <div class="day">15</div>
+          <div class="month">Jul</div>
+        </div>
+        <div class="session-info">
+          <h3>How to talk about your parent now</h3>
+          <p>5:30pm · Monster Ovolo Nishi · Free</p>
+        </div>
+      </div>
+
+      <div class="session-card">
+        <div class="session-date">
+          <div class="day">17</div>
+          <div class="month">Jun</div>
+        </div>
+        <div class="session-info">
+          <h3>Navigating romantic relationships</h3>
+          <p>5:30pm · Monster Ovolo Nishi · Free</p>
+        </div>
       </div>
 
     </div>
@@ -279,6 +286,19 @@
 <script>
   function toggleNav() { document.getElementById('nav-links').classList.toggle('open'); }
   function toggleAccordion(btn) { btn.closest('.accordion-item').classList.toggle('open'); }
+  function switchSessionTab(which) {
+    const upcomingPanel = document.getElementById('upcoming-panel');
+    const pastPanel = document.getElementById('past-panel');
+    const upcomingTab = document.getElementById('upcoming-tab');
+    const pastTab = document.getElementById('past-tab');
+    const showUpcoming = which === 'upcoming';
+    upcomingPanel.hidden = !showUpcoming;
+    pastPanel.hidden = showUpcoming;
+    upcomingTab.classList.toggle('active', showUpcoming);
+    pastTab.classList.toggle('active', !showUpcoming);
+    upcomingTab.setAttribute('aria-selected', showUpcoming);
+    pastTab.setAttribute('aria-selected', !showUpcoming);
+  }
   document.querySelectorAll('.nav-links a').forEach(link => { if (link.href === window.location.href) link.classList.add('active'); });
 </script>
 </body>
